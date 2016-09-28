@@ -9,3 +9,9 @@ Required Programs and Packages:
 Mathematica - https://www.wolfram.com/mathematica/trial/
 NetworkX - https://networkx.github.io/
 FIRST -  http://flexweb.asu.edu 
+Reduce - http://molprobity.biochem.duke.edu/index.php?MolProbSID=n45i9vcsk92jg1s30v68fjc5e4&eventID=58
+Reduce Dictionary - http://kinemage.biochem.duke.edu/software/reduce.php
+
+##### ADDING INTERACTIONS MANUALLY ####
+It is imporatant that the interactions be inspected, in particular when crystal  structures of low resolution are used.  
+This can lead to an abnormally short distance between the interacting groups, for which the energy function used in FIRST will penalise the interaction, assigning a positive energy to the salt bridge. In these cases, the hbond.out can be modified, and modest interaction energies can be assigned. Then, move the hbond.out file to hbond.in ( as well as hphobe.out to hphobe.in and cov.out to cov.in) and switch the keyword argument write_interactions to read_interactions in pgn.in 
