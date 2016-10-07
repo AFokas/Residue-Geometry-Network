@@ -72,18 +72,17 @@ evt_matrix_restart
 Nmax= 150
 mat_cutoff
   matrix cutoff for EVT analysis
-##########################################
+
 codons
   run codon analysis
 codons_path 
   path to codons list
-# For this analysis biopython paml must be downloaded
-# and a codons list must be supplied
-# FORMAT
-#      1i41.A.YAL012W.core     1       Y       ---:---:---:---
-#      1i41.A.YAL012W.core     2       A       ATG:ATG:ATG:ATG
+  For this analysis biopython paml must be downloaded
+  and a codons list must be supplied
+  FORMAT
+       1i41.A.YAL012W.core     1       Y       ---:---:---:---
+       1i41.A.YAL012W.core     2       A       ATG:ATG:ATG:ATG
 
-#########################################
 quality 
   run quality analysis
 # BEWARE : residues on edge of protein are more likely to be sep-
@@ -93,15 +92,13 @@ shortest_path
   format:
   begin A 1 THR
   end A 4 THR
-##########################################
 makeplot 
   plot degree against closeness centrality in file clo_deg_scatter.png
-##########################################
 subgraph 
   analyse subgraph
 sublist 
   which nodes in subgraph_list
-##########################################
+
 net_vis 
   visualise network
 node_col_opt 
