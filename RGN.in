@@ -1,0 +1,94 @@
+#!/bin/python
+import time
+import os
+home_dir = 'os.getcwd()'
+work_dir = os.getcwd()
+error_file=open('%s/error_file.txt' %work_dir, 'w')
+pdb_list_file = 'pdb_chain_list'
+######################### USER MANUAL ########################
+# Edges do not include water-water interactions in network analysis
+# however in the Rigid cluster analysis they will be involved assuming
+# they have hydrogens added (check XXX_renumber.pdb)
+# Het atoms must be specified, and sometimes interactions must be specified as well
+# see man_atom_int to add interactions
+###############################################################
+##################### TIME ####################################
+###############################################################
+start = time.time()
+###############################################################
+##################### PARAMETERS ##############################
+###############################################################
+provide_chain = 'n'
+if provide_chain == 'y':
+    chain=['A']#,'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+RESTART = 'n'  # IF RGN.py has already been run then the formated pdb file 
+               # will/should be in %s/%s.pdb %(pdb,pdb)
+               # This will take the formated file and begin from there
+provided = 'n' # provide pdb in file in the current directory under %s.pdb %pdb
+               # Note that PDB file needs to have EXPDTA line
+               # EXPDTA should be followed by SOLUTION if NMR file with several conformations
+               # where favourite conformation can be selected by adding 
+               # REPRESENTATIVE ENSEMBLE A where A is favourite conf
+provide_add_chain = 'n' # sometimes pdb files do not have a chain in the 'chain' column
+                        # this will fill in chain on pdb file 'A'
+h_added = 'n'           # if hydrogens are already added
+water = 'HOH'           # name of water in file
+het_remove = ['ALF','PO4','CIT','SO4','CL','GOL'] # these are heteroatoms (such as crystal artifacts) 
+                                # that you want removed. 
+                                # review them on the PDB website to deduce whether they are relevant 
+##########################################
+dilution_plot = 'n'     # If you want the dilution plot generated
+RC_identify = 'n'       # identifies rigid clusters at an Hcut of %RC_cutoff using %RC_atom atoms
+if RC_identify == 'y':
+    RC_cutoff = float('-2.5')
+    RC_atom = 'CA'
+##########################################
+phobe_color = 'blue'    # Color in printed graph 
+cov_color = 'black'     #
+hb_color = 'red'        #
+phobe_strength = float('2.5') 
+cutoff = float('2.5')
+deg_cutoff=float('-2.0')
+bet_cutoff=float('-2.5')
+clo_cutoff=float('-3.0')
+cov_strength = float('1')
+space = ' '
+
+###############################################################
+##################### Special Parameters ######################
+###############################################################
+no_phobe = 'n' # removes phobe from closeness centrality measurement and matrix if matrix == 'y' or module == 'y'
+##########################################
+matrix_set = 'y'
+EVT_centrality = 'y'
+dist_matrix_restart = 'n' #if you have already generated distance matrix, this will load it
+evt_matrix_restart = 'n'
+if matrix_set == 'y':
+    Nmax= 1
+    mat_cutoff=float('-2.5') # NOTE that this is teh cutoff used for modular
+##########################################
+codons = 'n'
+codons_path = '/scratch/asf40/bin/NABS/codons_list' #path to codons
+# For this analysis biopython paml must be downloaded
+# and a codons list must be supplied
+# FORMAT
+#      1i41.A.YAL012W.core     1       Y       ---:---:---:---
+#      1i41.A.YAL012W.core     2       A       ATG:ATG:ATG:ATG
+
+#########################################
+quality = 'n'
+##########################################
+# BEWARE : residues on edge of protein are more likely to be sep-
+#          perated from the network during edge removal step
+shortest_path = 'n'
+##########################################
+makeplot = 'n'
+##########################################
+subgraph = 'n'
+sublist = range(11,30)
+##########################################
+net_vis = 'n'
+node_col_opt = 'n'                   # if you want nodes in node_col_list coloured blue
+node_col_list = [('A', 450, 'CYS')]
+node_alt_col = 'yellow'
+##########################################
